@@ -1,6 +1,7 @@
 # bloc_contact_app
 
 A new Flutter project.
+Ref: https://www.youtube.com/watch?v=WlwLEPwlHKE&t=693s
 
 ## Getting Started
 
