@@ -11,7 +11,8 @@ class ContactsProvider extends InheritedWidget {
 
   bool updateShouldNotify(_) => true;
 
-  static ContactsBloc of (BuildContext context) {
-    return(context.dependOnInheritedWidgetOfExactType(ContactsProvider) as ContactsProvider).bloc;
-  }
+    static ContactsBloc of (BuildContext context){
+      return context.dependOnInheritedWidgetOfExactType<ContactsProvider>()
+      .bloc;
+    }
 }
