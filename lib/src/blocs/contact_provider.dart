@@ -16,3 +16,5 @@ class ContactsProvider extends InheritedWidget {
       .bloc;
     }
 }
+
+final bloc = ContactsProvider();

@@ -8,6 +8,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+    @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () async {
+      final bloc = ContactsProvider.of(context);
+      bloc.fetchContacts();
+    });
+  }
+  
   @override
   Widget build(BuildContext context) {
     final bloc = ContactsProvider.of(context);
@@ -33,15 +43,5 @@ class _HomePageState extends State<HomePage> {
         );
       },
     ));
-  }
-
-  @override
-  void initState() {
-    Future.delayed(Duration.zero, () async {
-      final bloc = ContactsProvider.of(context);
-      bloc.fetchContacts();
-    });
-
-    super.initState();
   }
 }
