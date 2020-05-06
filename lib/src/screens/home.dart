@@ -8,6 +8,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = ContactsProvider.of(context);
     return Scaffold(
+      appBar: AppBar(title: Text('Contact')),
         body: StreamBuilder<List<Contact>>(
       stream: bloc.contacts,
       builder: (context, snapshot) {
@@ -17,7 +18,9 @@ class HomePage extends StatelessWidget {
           itemCount: snapshot.data.length,
           itemBuilder: (context, index) {
             return ListTile(
-              title: Text(snapshot.data[index].name),
+              leading: CircleAvatar(child: Icon(Icons.person)),
+              title: Text(snapshot.data[index].name,style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
+              subtitle: Text(snapshot.data[index].company.name, style: TextStyle(fontStyle: FontStyle.italic),),
               onTap: () {
                 Navigator.push(
                     context,
