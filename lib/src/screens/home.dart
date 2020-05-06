@@ -3,21 +3,7 @@ import 'package:bloc_contact_app/src/models/contact.dart';
 import 'package:bloc_contact_app/src/screens/contact.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-
-    @override
-  void initState() {
-    super.initState();
-    Future.delayed(Duration.zero, () async {
-      final bloc = ContactsProvider.of(context);
-      bloc.fetchContacts();
-    });
-  }
-  
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = ContactsProvider.of(context);
@@ -36,7 +22,8 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ContactPage(contact: snapshot.data[index])));
+                        builder: (context) =>
+                            ContactPage(contact: snapshot.data[index])));
               },
             );
           },
