@@ -1,10 +1,15 @@
+import 'package:bloc_contact_app/src/data/repository.dart';
 import 'package:rxdart/subjects.dart';
 import '../models/contact.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
 
 class ContactsBloc {
+
+  ContactsBloc() {
+    _fetchContacts();
+  }
+
   final _contacts = BehaviorSubject<List<Contact>>();
+  final Repository _repository = Repository();
 
   // Get data
   Stream<List<Contact>> get contacts => _contacts.stream;
@@ -16,12 +21,6 @@ class ContactsBloc {
     _contacts.close();
   }
 
-    Future<void> fetchContacts() async {
-    var response = await http.get('https://jsonplaceholder.typicode.com/users');
-    var jsonResponse = convert.jsonDecode(response.body);
-    var contactsJson = jsonResponse as List;
-    List<Contact> contacts = contactsJson.map((contact) => Contact.fromJson(contact)).toList();
+  _fetchContacts() => _repository.fetchContacts().then((contacts) => changeContacts(contacts));
 
-    changeContacts(contacts);
-  }
 }
